@@ -33,15 +33,20 @@ module.exports = (api, options) => {
                         require('add-asset-html-webpack-plugin'),
                         dll.resolveAddAssetHtmlArgs()
                     )
-                if(config.plugins.has('copy')) {
+                if (config.plugins.has('copy')) {
                     // add copy agrs
                     config.plugin('copy').tap(args => {
-                        args[0][0].ignore.push(dll.outputDir + '/**')
-                        args[0].push({
+                        args[0].patterns[0].globOptions.ignore.push(dll.outputDir + '/**')
+                        args[0].patterns.push({
                             from: dll.outputPath,
                             toType: 'dir',
-                            ignore: ['*.js', '*.css', '*.manifest.json']
+                            globOptions: {
+                                ignore: ['*.js', '*.css', '*.manifest.json']
+                            },
+                            info: { minimized: true }
                         })
+                        console.log(dll.outputDir);
+                        console.log(args[0].patterns);
                         return args
                     })
                 }
@@ -56,7 +61,7 @@ module.exports = (api, options) => {
             usage: 'vue-cli-service dll',
             options: {}
         },
-        async function(args) {
+        async function (args) {
             dll.callCommand()
 
             // entry parameter can not be empty
@@ -92,7 +97,7 @@ module.exports = (api, options) => {
             let { VueLoaderPlugin } = require('vue-loader')
             let DefinePlugin = require('webpack/lib/DefinePlugin')
             let FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-            let NamedChunksPlugin = require('webpack/lib/NamedChunksPlugin')
+            // let NamedChunksPlugin = require('webpack/lib/NamedChunksPlugin')
             let MiniCssExtreactPlugin = require('mini-css-extract-plugin')
             let OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin')
             let fs = require('fs-extra')
@@ -104,7 +109,7 @@ module.exports = (api, options) => {
                     VueLoaderPlugin,
                     DefinePlugin,
                     FriendlyErrorsWebpackPlugin,
-                    NamedChunksPlugin,
+                    // NamedChunksPlugin,
                     MiniCssExtreactPlugin,
                     webpack.DllPlugin,
                     FileNameCachePlugin,

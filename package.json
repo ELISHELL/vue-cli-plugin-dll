@@ -1,10 +1,10 @@
 {
-    "name": "vue-cli-plugin-dll",
+    "name": "@elishell/vue-cli-plugin-dll",
     "version": "1.1.12",
     "description": "vue-cli 3 plugin for Dll and DllReference",
     "main": "service.js",
-    "repository": "git+https://github.com/fingerpan/vue-cli-plugin-dll.git",
-    "homepage": "https://github.com/fingerpan/vue-cli-plugin-dll",
+    "repository": "git+https://github.com/ELISHELL/vue-cli-plugin-dll.git",
+    "homepage": "https://github.com/ELISHELL/vue-cli-plugin-dll",
     "keywords": [
         "vue",
         "vue-cli",
@@ -12,7 +12,7 @@
         "Dll",
         "DllReference"
     ],
-    "author": "youngpan",
+    "author": "ELISHELL",
     "license": "MIT",
     "engines": {
         "node": ">=8.0"
